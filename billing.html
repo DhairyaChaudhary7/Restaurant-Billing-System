@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant Billing System</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092') no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+    }
+    .container:hover {
+      transform: scale(1.01);
+    }
+    h1 {
+      text-align: center;
+      color: #ff5722;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input[type="text"], input[type="number"], select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 12px;
+      background-color: #ff5722;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #e64a19;
+    }
+    .button-group {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .bill {
+      margin-top: 30px;
+      background-color: #fff3e0;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+    }
+    .bill h2 {
+      color: #ff9800;
+    }
+    .bill ul {
+      padding-left: 20px;
+    }
+    .section-label {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #e64a19;
+    }
+
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      .bill, .bill * {
+        visibility: visible;
+      }
+      .bill {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🍽 Restaurant Billing System</h1>
+
+    <label for="customer">Customer Name</label>
+    <input type="text" id="customer" placeholder="Enter customer name">
+
+    <div id="items">
+      <label class="section-label">Breakfast</label>
+      <div class="item-row">
+        <select class="food-select">
+          <option value="None">-- None --</option>
+          <option value="Pancakes">Pancakes - ₹120</option>
+          <option value="Omelette">Omelette - ₹100</option>
+          <option value="Toast">Toast - ₹60</option>
+          <option value="Bread and Butter">Bread and Butter - ₹40</option>
+          <option value="Aloo Pratha">Aloo Pratha - ₹60</option>
+           <option value="Cereals">Cereals - ₹80</option>
+        </select>
+        
+        <input type="number" class="quantity" placeholder="Qty" min="1" value="1">
+      </div>
+
+      <label class="section-label">Lunch</label>
+      <div class="item-row">
+        <select class="food-select">
+          <option value="None">-- None --</option>
+          <option value="Rice & Curry">Rice & Curry - ₹200</option>
+          <option value="Thali">Thali - ₹220</option>
+          <option value="Dal Makhani">Dal Makhani - ₹180</option>
+            <option value="Naan">Naan - ₹180</option>
+        </select>
+        <input type="number" class="quantity" placeholder="Qty" min="1" value="1">
+      </div>
+
+      <label class="section-label">Dinner</label>
+      <div class="item-row">
+        <select class="food-select">
+          <option value="None">-- None --</option>
+          <option value="Paneer Butter Masala">Paneer Butter Masala - ₹230</option>
+          <option value="Butter Naan">Butter Naan - ₹40</option>
+          <option value="Biryani">Biryani - ₹250</option>
+        </select>
+        <input type="number" class="quantity" placeholder="Qty" min="1" value="1">
+      </div>
+
+      <label class="section-label">Fast Food</label>
+      <div class="item-row">
+        <select class="food-select">
+          <option value="None">-- None --</option>
+          <option value="Pizza">Pizza - ₹250</option>
+          <option value="Burger">Burger - ₹150</option>
+          <option value="Fries">Fries - ₹100</option>
+          <option value="Noodles">Noodles - ₹180</option>
+        </select>
+        <input type="number" class="quantity" placeholder="Qty" min="1" value="1">
+      </div>
+
+      <label class="section-label">Drinks</label>
+      <div class="item-row">
+        <select class="food-select">
+          <option value="None">-- None --</option>
+          <option value="Coke">Coke - ₹50</option>
+          <option value="Coffee">Coffee - ₹80</option>
+          <option value="Tea">Tea - ₹40</option>
+          <option value="Juice">Juice - ₹60</option>
+        </select>
+        <input type="number" class="quantity" placeholder="Qty" min="1" value="1">
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button onclick="addItemRow()">➕ Add Another Item</button>
+      <button onclick="generateRestaurantBill()">🧾 Generate Bill</button>
+      <button onclick="clearBill()">🗑 Clear Bill</button>
+      <button onclick="window.print()">🖨 Print Bill</button>
+    </div>
+
+    <div class="bill" id="bill"></div>
+  </div>
+
+  <script>
+    const prices = {
+      'Pancakes': 120,
+      'Omelette': 100,
+      'Toast': 60,
+      'Rice & Curry': 200,
+      'Thali': 220,
+      'Dal Makhani': 180,
+      'Paneer Butter Masala': 230,
+      'Butter Naan': 40,
+      'Biryani': 250,
+      'Pizza': 250,
+      'Burger': 150,
+      'Fries': 100,
+      'Noodles': 180,
+      'Coke': 50,
+      'Coffee': 80,
+      'Tea': 40,
+      'Juice': 60
+    };
+
+    function addItemRow() {
+      const itemRow = document.createElement('div');
+      itemRow.className = 'item-row';
+      const options = '<option value="None">-- None --</option>' + Object.keys(prices).map(item => `<option value="${item}">${item} - ₹${prices[item]}</option>`).join('');
+      itemRow.innerHTML = `
+        <select class="food-select">
+          ${options}
+        </select>
+        <input type="number" class="quantity" placeholder="Qty" min="1" value="1">
+      `;
+      document.getElementById('items').appendChild(itemRow);
+    }
+
+    function generateRestaurantBill() {
+      const customer = document.getElementById('customer').value;
+      const selects = document.querySelectorAll('.food-select');
+      const quantities = document.querySelectorAll('.quantity');
+
+      let billDetails = '';
+      let total = 0;
+
+      billDetails += `<h2>Bill for ${customer}</h2><ul>`;
+
+      for (let i = 0; i < selects.length; i++) {
+        const item = selects[i].value;
+        if (item === 'None') continue;
+        const qty = parseInt(quantities[i].value);
+        const cost = prices[item] * qty;
+        total += cost;
+        billDetails += `<li>${item} x${qty} = ₹${cost}</li>`;
+      }
+
+      const tax = total * 0.05;
+      const finalTotal = total + tax;
+
+      billDetails += `</ul>`;
+      billDetails += `<p><strong>Subtotal:</strong> ₹${total}</p>`;
+      billDetails += `<p><strong>Tax (5%):</strong> ₹${tax.toFixed(2)}</p>`;
+      billDetails += `<p><strong>Total Amount:</strong> ₹${finalTotal.toFixed(2)}</p>`;
+
+      document.getElementById('bill').innerHTML = billDetails;
+    }
+
+    function clearBill() {
+      document.getElementById('bill').innerHTML = '';
+    }
+  </script>
+</body>
+</html>
