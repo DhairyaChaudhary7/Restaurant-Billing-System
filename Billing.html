@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant Billing System</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🍽 Restaurant Billing System</h1>
+&nbsp;
+&nbsp;
+
+    <label for="customer">Customer Name</label>
+    <input type="text" id="customer" placeholder="Enter customer name">
+&nbsp;
+&nbsp;
+
+    <div id="items">
+      <label class="section-label">Breakfast</label>
+      <div class="item-row">
+        <select class="food-select">
+          <option value="None">-- None --</option>
+          <option value="Pancakes">Pancakes - ₹120</option>
+          <option value="Omelette">Omelette - ₹100</option>
+          <option value="Toast">Toast - ₹60</option>
+          <option value="Bread and Butter">Bread and Butter - ₹40</option>
+          <option value="Aloo Pratha">Aloo Pratha - ₹60</option>
+          <option value="Cereals">Cereals - ₹80</option>
+        </select>
+&nbsp;
+&nbsp;
+
+        <input type="number" class="quantity" placeholder="Qty" min="1" value="1">
+      </div>
+&nbsp;
+&nbsp;
+
+      <label class="section-label">Lunch</label>
+      <div class="item-row">
+        <select class="food-select">
+          <option value="None">-- None --</option>
+          <option value="Rice & Curry">Rice & Curry - ₹200</option>
+          <option value="Thali">Thali - ₹220</option>
+          <option value="Dal Makhani">Dal Makhani - ₹180</option>
+          <option value="Naan">Naan - ₹180</option>
+        </select>
+        <input type="number" class="quantity" placeholder="Qty" min="1" value="1">
+      </div>
+&nbsp;
+&nbsp;
+
+      <label class="section-label">Dinner</label>
+      <div class="item-row">
+        <select class="food-select">
+          <option value="None">-- None --</option>
+          <option value="Paneer Butter Masala">Paneer Butter Masala - ₹230</option>
+          <option value="Butter Naan">Butter Naan - ₹40</option>
+          <option value="Biryani">Biryani - ₹250</option>
+        </select>
+        <input type="number" class="quantity" placeholder="Qty" min="1" value="1">
+      </div>
+&nbsp;
+&nbsp;
+
+      <label class="section-label">Fast Food</label>
+      <div class="item-row">
+        <select class="food-select">
+          <option value="None">-- None --</option>
+          <option value="Pizza">Pizza - ₹250</option>
+          <option value="Burger">Burger - ₹150</option>
+          <option value="Fries">Fries - ₹100</option>
+          <option value="Noodles">Noodles - ₹180</option>
+        </select>
+        <input type="number" class="quantity" placeholder="Qty" min="1" value="1">
+      </div>
+&nbsp;
+&nbsp;
+
+      <label class="section-label">Drinks</label>
+      <div class="item-row">
+        <select class="food-select">
+          <option value="None">-- None --</option>
+          <option value="Coke">Coke - ₹50</option>
+          <option value="Coffee">Coffee - ₹80</option>
+          <option value="Tea">Tea - ₹40</option>
+          <option value="Juice">Juice - ₹60</option>
+        </select>
+        <input type="number" class="quantity" placeholder="Qty" min="1" value="1">
+      </div>
+    </div>
+&nbsp;
+&nbsp;
+
+    <div class="button-group">
+      <button onclick="addItemRow()">➕ Add Another Item</button>
+      <button onclick="generateRestaurantBill()">🧾 Generate Bill</button>
+      <button onclick="clearBill()">🗑 Clear Bill</button>
+      <button onclick="window.print()">🖨 Print Bill</button>
+    </div>
+&nbsp;
+&nbsp;
+
+    <div class="bill" id="bill"></div>
+  </div>
+&nbsp;
+&nbsp;
+
+  <script src="script.js"></script>
+</body>
+</html>
